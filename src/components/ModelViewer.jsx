@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 
 const MODEL_SOURCES = [
-  { type: "glb", path: "/models/Painterly10.glb" },
+  { type: "glb", path: "/models/Painterly11.glb" },
 ];
 
 const LOAD_TIMEOUT_MS = 12000;

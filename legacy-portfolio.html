@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daniel Yong | Software Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Digital portfolio for Daniel Yong, an entry-level software developer focused on full-stack development, Python, and 3D-aware design."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #090d13;
+        --bg-soft: #101722;
+        --panel: rgba(16, 23, 34, 0.74);
+        --panel-strong: #111a29;
+        --line: rgba(155, 175, 196, 0.24);
+        --text: #e8eef8;
+        --muted: #98a9bf;
+        --accent: #34d1bf;
+        --accent-warm: #f0b56a;
+        --shadow: 0 24px 48px rgba(0, 0, 0, 0.34);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Sora", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% -10%, rgba(52, 209, 191, 0.14), transparent 32%),
+          radial-gradient(circle at 100% 0%, rgba(240, 181, 106, 0.16), transparent 30%),
+          linear-gradient(165deg, #080b11 0%, #0b111a 44%, #0a0f18 100%);
+        min-height: 100vh;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: radial-gradient(circle at center, black 42%, transparent 100%);
+        z-index: -1;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(10px);
+        background: rgba(7, 11, 17, 0.68);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+      }
+
+      .wordmark {
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 0.82rem;
+      }
+
+      .wordmark span {
+        color: var(--accent);
+      }
+
+      .nav {
+        display: flex;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 0.42rem 0.84rem;
+        font-size: 0.78rem;
+        transition: 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--text);
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .hero {
+        padding: 4.4rem 0 2.8rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.06fr 0.94fr;
+        gap: 1.35rem;
+        align-items: stretch;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--accent);
+        text-transform: uppercase;
+        font-size: 0.74rem;
+        letter-spacing: 0.18em;
+        font-weight: 600;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.25rem);
+        line-height: 1.08;
+      }
+
+      .title-sub {
+        margin: 0;
+        color: var(--muted);
+        max-width: 46ch;
+      }
+
+      .tagline {
+        margin: 0;
+        color: #bfd1ea;
+        font-size: 0.95rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 0.35rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        border-radius: 999px;
+        padding: 0.65rem 1rem;
+        text-decoration: none;
+        font-size: 0.82rem;
+        transition: 0.2s ease;
+      }
+
+      .btn-solid {
+        background: linear-gradient(135deg, var(--accent) 0%, #5ccff0 100%);
+        color: #06161b;
+        font-weight: 700;
+      }
+
+      .btn-solid:hover {
+        filter: brightness(1.05);
+      }
+
+      .btn-outline {
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .btn-outline:hover {
+        border-color: rgba(255, 255, 255, 0.34);
+      }
+
+      .quick-meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      .quick-meta div {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 0.62rem 0.7rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .quick-meta strong {
+        display: block;
+        font-size: 0.82rem;
+        margin-bottom: 0.15rem;
+      }
+
+      .quick-meta span {
+        color: var(--muted);
+        font-size: 0.73rem;
+      }
+
+      .viewer-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 420px;
+        background:
+          radial-gradient(circle at 75% 15%, rgba(240, 181, 106, 0.2), transparent 36%),
+          linear-gradient(145deg, rgba(16, 23, 34, 0.82), rgba(11, 16, 25, 0.95));
+      }
+
+      #model-viewer {
+        position: absolute;
+        inset: 0;
+      }
+
+      #model-fallback {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+
+      #model-fallback.hidden {
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      .fallback-stack {
+        position: relative;
+        width: min(260px, 58%);
+        aspect-ratio: 1 / 1;
+        filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.45));
+      }
+
+      .fallback-core,
+      .fallback-ring,
+      .fallback-halo {
+        position: absolute;
+        inset: 0;
+      }
+
+      .fallback-core {
+        width: 52%;
+        height: 52%;
+        top: 24%;
+        left: 24%;
+        border-radius: 18px;
+        background: linear-gradient(140deg, #6ce7f7 0%, #1f90ab 52%, #14415f 100%);
+        transform: rotate(26deg);
+        animation: fallbackSpin 8.5s linear infinite;
+      }
+
+      .fallback-ring {
+        width: 86%;
+        height: 86%;
+        top: 7%;
+        left: 7%;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 202, 126, 0.86);
+        transform: rotateX(70deg);
+        animation: fallbackDrift 4.2s ease-in-out infinite;
+      }
+
+      .fallback-halo {
+        width: 94%;
+        height: 94%;
+        top: 3%;
+        left: 3%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(52, 209, 191, 0.2), transparent 66%);
+        animation: fallbackPulse 3s ease-in-out infinite;
+      }
+
+      .viewer-overlay {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 0.95rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 0.85rem;
+        pointer-events: none;
+      }
+
+      .viewer-overlay p {
+        margin: 0;
+        max-width: 30ch;
+        font-size: 0.73rem;
+        color: var(--muted);
+      }
+
+      .status-pill {
+        margin: 0;
+        padding: 0.34rem 0.62rem;
+        border-radius: 999px;
+        font-size: 0.69rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-family: "IBM Plex Mono", monospace;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        background: rgba(6, 11, 18, 0.58);
+        color: #d7e5f8;
+      }
+
+      .section {
+        padding: 1.2rem 0;
+      }
+
+      .section h2 {
+        margin: 0 0 0.95rem;
+        font-size: clamp(1.38rem, 2.3vw, 2rem);
+      }
+
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .panel h3 {
+        margin: 0 0 0.42rem;
+        font-size: 1rem;
+      }
+
+      .panel p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 0.65rem;
+      }
+
+      .chip {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        padding: 0.35rem 0.7rem;
+        font-size: 0.75rem;
+        color: #d9e7fa;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 0.78rem;
+      }
+
+      .job {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 1rem;
+        background: linear-gradient(165deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      }
+
+      .job-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+      }
+
+      .job h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .job .meta {
+        margin: 0.18rem 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .job .date {
+        margin: 0;
+        color: #c6d7ea;
+        font-size: 0.78rem;
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      .job ul {
+        margin: 0.72rem 0 0;
+        padding-left: 1rem;
+        color: #d6e1f1;
+        font-size: 0.86rem;
+      }
+
+      .project {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .project h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .project > p {
+        margin: 0.46rem 0 0.7rem;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .project dl {
+        margin: 0;
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 0.4rem 0.55rem;
+        font-size: 0.82rem;
+      }
+
+      .project dt {
+        color: #c8dbf3;
+        font-weight: 600;
+      }
+
+      .project dd {
+        margin: 0;
+        color: #d5e2f3;
+      }
+
+      .cert-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.58rem;
+      }
+
+      .cert-list li {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 0.65rem 0.75rem;
+        font-size: 0.82rem;
+        color: #d6e2f3;
+      }
+
+      .contact-grid {
+        display: grid;
+        gap: 0.75rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-grid a {
+        color: #d8e6f8;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        padding: 0.72rem;
+        font-size: 0.84rem;
+        transition: 0.2s ease;
+      }
+
+      .contact-grid a:hover {
+        border-color: rgba(255, 255, 255, 0.28);
+        transform: translateY(-1px);
+      }
+
+      footer {
+        margin: 2rem 0 2.6rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal.animate-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.62s ease, transform 0.62s ease;
+      }
+
+      .reveal.animate-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fallbackSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fallbackDrift {
+        0%,
+        100% {
+          transform: rotateX(70deg) scale(1);
+        }
+        50% {
+          transform: rotateX(70deg) scale(1.06);
+        }
+      }
+
+      @keyframes fallbackPulse {
+        0%,
+        100% {
+          transform: scale(0.98);
+          opacity: 0.72;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .grid-2,
+        .grid-3,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 3rem;
+        }
+
+        .viewer-card {
+          min-height: 360px;
+        }
+
+        .quick-meta {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .job-top,
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .project dl {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .hero-copy {
+          padding: 1.25rem;
+        }
+
+        .nav {
+          justify-content: flex-start;
+        }
+
+        .quick-meta {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <p class="wordmark">Daniel <span>Yong</span> Portfolio</p>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-grid">
+          <article class="card hero-copy reveal">
+            <p class="eyebrow">Software Developer</p>
+            <h1>Daniel Yong Zhen Xun</h1>
+            <p class="tagline">Full-stack development, Python automation, and 3D-driven design direction.</p>
+            <p class="title-sub">
+              Entry-level developer with internship and teaching experience in robotics and web systems. Focused on
+              building reliable features, debugging with structure, and shipping production-ready work through team workflows.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="#projects">View Featured Projects</a>
+              <a class="btn btn-outline" href="Daniel_Yong_Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+            </div>
+            <div class="quick-meta">
+              <div>
+                <strong>Current Track</strong>
+                <span>Diploma in AI & Analytics</span>
+              </div>
+              <div>
+                <strong>Based In</strong>
+                <span>Singapore</span>
+              </div>
+              <div>
+                <strong>Primary Stack</strong>
+                <span>Flask, JS, SQL, C#</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card viewer-card reveal">
+            <div id="model-viewer" aria-label="Interactive 3D model viewer"></div>
+            <div id="model-fallback" aria-hidden="true">
+              <div class="fallback-stack">
+                <div class="fallback-halo"></div>
+                <div class="fallback-ring"></div>
+                <div class="fallback-core"></div>
+              </div>
+            </div>
+            <div class="viewer-overlay">
+              <p>
+                Interactive object from <code>Painterly.fbx</code> to reflect ongoing interest in 3D graphics and
+                visual design.
+              </p>
+              <p id="model-status" class="status-pill">Initializing 3D</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section reveal">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>Professional profile aligned to software engineering roles.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="panel">
+            <h3>Profile Summary</h3>
+            <p>
+              Entry-level software developer with experience building full-stack web features and Python projects.
+              Strong in debugging, technical communication, and iterative delivery. Ready to contribute to teams that
+              value reliable execution and continuous improvement.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Education</h3>
+            <p>Diploma in Applied Artificial Intelligence & Analytics, Nanyang Polytechnic (2025 - 2028).</p>
+            <p style="margin-top: 0.45rem">GCE O-Level Certificate, Nan Hua High School (2021 - 2024).</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="section reveal">
+        <div class="section-head">
+          <h2>Skills & Expertise</h2>
+          <p>Relevant stack for software development, problem solving, and delivery.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="panel">
+            <h3>Development</h3>
+            <div class="stack">
+              <span class="chip">Python</span>
+              <span class="chip">Flask</span>
+              <span class="chip">C#</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">SQL</span>
+              <span class="chip">REST APIs</span>
+            </div>
+          </article>
+          <article class="panel">
+            <h3>Web & Product</h3>
+            <div class="stack">
+              <span class="chip">HTML/CSS</span>
+              <span class="chip">Responsive UI</span>
+              <span class="chip">Bug Reproduction</span>
+              <span class="chip">PR Workflows</span>
+              <span class="chip">Data Handling</span>
+            </div>
+          </article>
+          <article class="panel">
+            <h3>Additional Strengths</h3>
+            <div class="stack">
+              <span class="chip">Computer Networking</span>
+              <span class="chip">Game Development</span>
+              <span class="chip">Robotics</span>
+              <span class="chip">Cloud</span>
+              <span class="chip">3D Graphics / Design</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="section reveal">
+        <div class="section-head">
+          <h2>Work Experience</h2>
+          <p>Internship and teaching history with hands-on technical execution.</p>
+        </div>
+        <div class="timeline">
+          <article class="job">
+            <div class="job-top">
+              <div>
+                <h3>Part-time Instructor</h3>
+                <p class="meta">NK Robotics</p>
+              </div>
+              <p class="date">Jan 2025 - Present</p>
+            </div>
+            <ul>
+              <li>Delivered robotics and coding lessons to more than 30 mixed-ability students.</li>
+              <li>Guided structured debugging steps and technical troubleshooting during class activities.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-top">
+              <div>
+                <h3>Software Developer Intern</h3>
+                <p class="meta">Nullspace Robotics</p>
+              </div>
+              <p class="date">Dec 2024 - Present</p>
+            </div>
+            <ul>
+              <li>Supported robotics sessions by helping students solve technical challenges in real time.</li>
+              <li>Provided targeted feedback and issue resolution support to keep sessions productive.</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-top">
+              <div>
+                <h3>Software Developer Intern</h3>
+                <p class="meta">Grab</p>
+              </div>
+              <p class="date">May 2027 - Oct 2027</p>
+            </div>
+            <ul>
+              <li>Built Flask REST features and responsive UI components for internal sprint deliverables.</li>
+              <li>Fixed defects through reproduction, validation, and team collaboration via Git/PR workflows.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section reveal">
+        <div class="section-head">
+          <h2>Featured Projects</h2>
+          <p>Each project includes scope, role, process, and outcome.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="project">
+            <h3>CareSwap - Full-Stack Web Platform</h3>
+            <p>Intergenerational help and skill-exchange platform developed as a team project.</p>
+            <dl>
+              <dt>Project Scope</dt>
+              <dd>Build and refine core user flows for a practical community exchange platform.</dd>
+              <dt>Role & Solution</dt>
+              <dd>Contributed full-stack features and Flask-based backend workflows tied to user actions.</dd>
+              <dt>Work Process</dt>
+              <dd>Integrated frontend and backend updates with teammates to keep behavior consistent end-to-end.</dd>
+              <dt>Outcome</dt>
+              <dd>Delivered stable modules and iterated based on integration/testing feedback.</dd>
+            </dl>
+          </article>
+
+          <article class="project">
+            <h3>Algorithmic Automation Bots - Python</h3>
+            <p>Automation scripts for game-like challenges including Wordle, Rhythm Plus, and Minesweeper.</p>
+            <dl>
+              <dt>Project Scope</dt>
+              <dd>Automate repetitive game tasks with deterministic decision logic.</dd>
+              <dt>Role & Solution</dt>
+              <dd>Designed and implemented scripts emphasizing repeatability, correctness, and robustness.</dd>
+              <dt>Work Process</dt>
+              <dd>Tested edge cases and improved logic iteratively through controlled simulation runs.</dd>
+              <dt>Outcome</dt>
+              <dd>Reliable automation behavior across multiple challenge scenarios.</dd>
+            </dl>
+          </article>
+
+          <article class="project">
+            <h3>Games - Unity / Godot</h3>
+            <p>Small game prototypes in bullet-hell and platformer styles.</p>
+            <dl>
+              <dt>Project Scope</dt>
+              <dd>Create playable game loops with clear state transitions and interaction systems.</dd>
+              <dt>Role & Solution</dt>
+              <dd>Implemented player movement, gameplay states, and core loop mechanics.</dd>
+              <dt>Work Process</dt>
+              <dd>Built iteratively and tuned mechanics through rapid test-play cycles.</dd>
+              <dt>Outcome</dt>
+              <dd>Functional prototypes demonstrating gameplay architecture and control logic.</dd>
+            </dl>
+          </article>
+
+          <article class="project">
+            <h3>Python Utilities - Practice Builds</h3>
+            <p>Practice applications such as tic-tac-toe and calculators focused on clean logic.</p>
+            <dl>
+              <dt>Project Scope</dt>
+              <dd>Strengthen programming fundamentals through compact utility applications.</dd>
+              <dt>Role & Solution</dt>
+              <dd>Designed standalone scripts with clear modular structure and predictable behavior.</dd>
+              <dt>Work Process</dt>
+              <dd>Verified output correctness and refactored logic for readability and maintenance.</dd>
+              <dt>Outcome</dt>
+              <dd>Improved code clarity and confidence in foundational Python problem solving.</dd>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="grid grid-2">
+          <article class="panel">
+            <h3>Achievements</h3>
+            <ul class="cert-list">
+              <li>AWS GenAI Tournament Winner (2026)</li>
+              <li>Huawei Tech4City Participant (2025)</li>
+              <li>IDE Robotics Participant (2025)</li>
+              <li>HacX Challenge Participant (2025)</li>
+              <li>WRO Secondary Participant (2022)</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>Certifications & Interests</h3>
+            <ul class="cert-list">
+              <li>AI Fluency Framework & Foundations - Anthropic (2025)</li>
+              <li>Certified Entry-Level Python Programmer - Python Institute (2025)</li>
+              <li>Interests: Coding, Web/App Development, Cloud, Robotics, 3D Graphics/Design</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section reveal">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Open to software engineering opportunities and project collaboration.</p>
+        </div>
+        <div class="contact-grid">
+          <a href="mailto:danielyongzx@gmail.com">danielyongzx@gmail.com</a>
+          <a href="tel:+6582923677">+65 8292 3677</a>
+          <a href="https://www.linkedin.com/in/daniel-yong-88a874265/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+          <a href="https://github.com/DANIE4588E" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        </div>
+      </section>
+
+      <footer>
+        <span>Portfolio prepared for 2028 software developer job applications.</span>
+        <span>Built with HTML, CSS, JavaScript, and Three.js.</span>
+      </footer>
+    </main>
+
+    <script>
+      window.__viewerReady = false;
+      window.__markViewerReady = () => {
+        window.__viewerReady = true;
+        const fallback = document.getElementById("model-fallback");
+        if (fallback) {
+          fallback.classList.add("hidden");
+        }
+      };
+
+      window.setTimeout(() => {
+        if (!window.__viewerReady) {
+          const status = document.getElementById("model-status");
+          if (status) {
+            status.textContent = "Fallback Preview";
+          }
+        }
+      }, 1600);
+
+      const revealElements = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        revealElements.forEach((el) => el.classList.add("animate-in"));
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.15 }
+        );
+        revealElements.forEach((el) => revealObserver.observe(el));
+      } else {
+        revealElements.forEach((el) => el.classList.add("visible"));
+      }
+    </script>
+
+    <script type="module">
+      const viewer = document.getElementById("model-viewer");
+      const statusEl = document.getElementById("model-status");
+
+      if (!viewer) {
+        throw new Error("Missing model viewer container.");
+      }
+
+      async function initThreeViewer() {
+        try {
+          const THREE = await import("https://unpkg.com/three@0.161.0/build/three.module.js");
+          const controlsModule = await import("https://unpkg.com/three@0.161.0/examples/jsm/controls/OrbitControls.js");
+          const fbxModule = await import("https://unpkg.com/three@0.161.0/examples/jsm/loaders/FBXLoader.js");
+
+          const OrbitControls = controlsModule.OrbitControls;
+          const FBXLoader = fbxModule.FBXLoader;
+
+          const scene = new THREE.Scene();
+          scene.fog = new THREE.Fog(0x0a121b, 6, 12);
+
+          const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 50);
+          camera.position.set(2.7, 1.9, 4.5);
+
+          const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+          renderer.outputColorSpace = THREE.SRGBColorSpace;
+          renderer.toneMapping = THREE.ACESFilmicToneMapping;
+          renderer.toneMappingExposure = 1.05;
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+          viewer.appendChild(renderer.domElement);
+
+          if (typeof window.__markViewerReady === "function") {
+            window.__markViewerReady();
+          }
+
+          const controls = new OrbitControls(camera, renderer.domElement);
+          controls.enableDamping = true;
+          controls.enablePan = false;
+          controls.autoRotate = false;
+          controls.minDistance = 2;
+          controls.maxDistance = 8;
+          controls.maxPolarAngle = Math.PI * 0.62;
+          controls.minPolarAngle = Math.PI * 0.22;
+
+          const ambientLight = new THREE.HemisphereLight(0x97d8ff, 0x14181f, 0.8);
+          scene.add(ambientLight);
+
+          const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+          keyLight.position.set(5, 7, 5);
+          scene.add(keyLight);
+
+          const rimLight = new THREE.DirectionalLight(0x4cd9d6, 0.85);
+          rimLight.position.set(-5, 2.2, -4.5);
+          scene.add(rimLight);
+
+          const fillLight = new THREE.PointLight(0xf1b363, 0.7, 12);
+          fillLight.position.set(1.5, -1, 2);
+          scene.add(fillLight);
+
+          const stage = new THREE.Mesh(
+            new THREE.CylinderGeometry(1.8, 2.3, 0.2, 64),
+            new THREE.MeshStandardMaterial({
+              color: 0x0f1823,
+              metalness: 0.4,
+              roughness: 0.55,
+              transparent: true,
+              opacity: 0.82,
+            })
+          );
+          stage.position.y = -1.24;
+          scene.add(stage);
+
+          const fallbackGroup = new THREE.Group();
+          const fallbackMaterial = new THREE.MeshStandardMaterial({
+            color: 0x2bc1da,
+            metalness: 0.3,
+            roughness: 0.36,
+            emissive: 0x0b1e2b,
+            emissiveIntensity: 0.7,
+          });
+          const fallbackCore = new THREE.Mesh(new THREE.IcosahedronGeometry(0.88, 1), fallbackMaterial);
+          fallbackCore.position.y = 0.02;
+
+          const fallbackRingMaterial = new THREE.MeshStandardMaterial({
+            color: 0xffc77a,
+            metalness: 0.6,
+            roughness: 0.32,
+          });
+          const fallbackRing = new THREE.Mesh(new THREE.TorusGeometry(1.34, 0.055, 18, 96), fallbackRingMaterial);
+          fallbackRing.rotation.x = Math.PI * 0.43;
+          fallbackRing.position.y = -0.15;
+
+          fallbackGroup.add(fallbackCore, fallbackRing);
+          scene.add(fallbackGroup);
+
+          const loader = new FBXLoader();
+          const modelPivot = new THREE.Group();
+          scene.add(modelPivot);
+
+          let modelLoaded = false;
+          let timedOut = false;
+          const LOAD_TIMEOUT_MS = 12000;
+          statusEl.textContent = "Loading Painterly";
+
+          const timeoutId = window.setTimeout(() => {
+            if (!modelLoaded) {
+              timedOut = true;
+              statusEl.textContent = "Using Lightweight Preview";
+            }
+          }, LOAD_TIMEOUT_MS);
+
+          loader.load(
+            "Painterly.fbx",
+            (model) => {
+              window.clearTimeout(timeoutId);
+              model.traverse((node) => {
+                if (node.isMesh) {
+                  node.castShadow = false;
+                  node.receiveShadow = false;
+                  if (node.material) {
+                    node.material.side = THREE.DoubleSide;
+                  }
+                }
+              });
+
+              const fitBox = new THREE.Box3().setFromObject(model);
+              const size = fitBox.getSize(new THREE.Vector3());
+              const maxAxis = Math.max(size.x, size.y, size.z) || 1;
+              const targetSize = 2.45;
+              const scale = targetSize / maxAxis;
+              model.scale.setScalar(scale);
+
+              fitBox.setFromObject(model);
+              const center = fitBox.getCenter(new THREE.Vector3());
+              model.position.sub(center);
+              model.position.y = -0.2;
+              model.rotation.x = -0.22;
+
+              modelPivot.add(model);
+              fallbackGroup.visible = false;
+              modelLoaded = true;
+              statusEl.textContent = timedOut ? "Painterly Loaded" : "Model Ready";
+            },
+            (event) => {
+              if (timedOut) {
+                return;
+              }
+
+              if (!event.total) {
+                statusEl.textContent = "Loading Painterly";
+                return;
+              }
+              const percent = Math.max(1, Math.round((event.loaded / event.total) * 100));
+              statusEl.textContent = `Loading ${percent}%`;
+            },
+            (error) => {
+              window.clearTimeout(timeoutId);
+              statusEl.textContent = "Using Lightweight Preview";
+              console.error("Painterly.fbx failed to load:", error);
+            }
+          );
+
+          function resizeRenderer() {
+            const width = viewer.clientWidth;
+            const height = viewer.clientHeight;
+            if (!width || !height) {
+              return;
+            }
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+          }
+
+          const resizeObserver = new ResizeObserver(resizeRenderer);
+          resizeObserver.observe(viewer);
+          resizeRenderer();
+
+          const clock = new THREE.Clock();
+
+          function animate() {
+            const elapsed = clock.getElapsedTime();
+
+            if (modelLoaded) {
+              modelPivot.rotation.y += 0.0036;
+              modelPivot.position.y = Math.sin(elapsed * 1.25) * 0.05;
+            } else {
+              fallbackGroup.rotation.y += 0.005;
+              fallbackGroup.position.y = Math.sin(elapsed * 1.2) * 0.04;
+              fallbackCore.rotation.x += 0.004;
+              fallbackCore.rotation.y += 0.006;
+              fallbackRing.rotation.z += 0.01;
+            }
+
+            controls.update();
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+          }
+
+          animate();
+        } catch (error) {
+          statusEl.textContent = "Fallback Preview";
+          console.error("3D runtime failed, keeping fallback preview:", error);
+        }
+      }
+
+      initThreeViewer();
+    </script>
+  </body>
+</html>

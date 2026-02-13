@@ -252,10 +252,10 @@ export default function HomePage() {
                 <p>View project details</p>
               </Link>
 
-              <Link className="glass-card home-project-tile" to="/projects/wordle-solver" data-reveal>
-                <img className="home-project-image" src="/images/Wordle.png" alt="Wordle Solver project preview" />
+              <Link className="glass-card home-project-tile" to="/projects/nyp-badminton-cca-website" data-reveal>
+                <img className="home-project-image" src="/images/Badminton.png" alt="NYP Badminton CCA website preview" />
                 <div className="home-project-overlay" />
-                <h3>Wordle Solver</h3>
+                <h3>NYP Badminton CCA Website</h3>
                 <p>View project details</p>
               </Link>
 

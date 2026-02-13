@@ -404,6 +404,44 @@ section[id] {
   color: var(--text-main);
 }
 
+.project-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto;
+  align-items: center;
+}
+
+.project-link-icons {
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-left: auto;
+}
+
+.project-icon-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-icon-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.project-icon-link:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-glow);
+  transform: translateY(-1px);
+}
+
 .learn-more-btn {
   display: inline-flex;
   width: fit-content;

@@ -78,6 +78,46 @@ export default function ProjectDetailPage() {
               <p>{project.detail}</p>
             </div>
 
+            {project.role ? (
+              <div className="project-detail-body">
+                <h3>My Role</h3>
+                <p>{project.role}</p>
+              </div>
+            ) : null}
+
+            {Array.isArray(project.responsibilities) && project.responsibilities.length > 0 ? (
+              <div className="project-detail-body">
+                <h3>Responsibilities</h3>
+                <ul className="project-detail-list">
+                  {project.responsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {Array.isArray(project.implementation) && project.implementation.length > 0 ? (
+              <div className="project-detail-body">
+                <h3>Implementation Notes</h3>
+                <ul className="project-detail-list">
+                  {project.implementation.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {Array.isArray(project.impact) && project.impact.length > 0 ? (
+              <div className="project-detail-body">
+                <h3>Outcome and Impact</h3>
+                <ul className="project-detail-list">
+                  {project.impact.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
             {Array.isArray(project.stack) && project.stack.length > 0 ? (
               <div className="project-stack">
                 {project.stack.map((item) => (

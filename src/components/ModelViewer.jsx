@@ -11,6 +11,7 @@ const MODEL_SOURCES = [
 
 const LOAD_TIMEOUT_MS = 12000;
 const INTRO_DURATION_MS = 2400;
+const INTRO_TEXT_CUE = 0.4;
 const FILL_LIGHT_DELAY = 0.35;
 
 function easeOutCubic(t) {
@@ -250,6 +251,9 @@ export default function ModelViewer({ onIntroComplete }) {
         if (introActive) {
           const t = Math.min(1, (now - introStart) / INTRO_DURATION_MS);
           const eased = easeOutCubic(t);
+          if (t >= INTRO_TEXT_CUE) {
+            notifyIntroComplete();
+          }
 
           modelPivot.position.lerpVectors(introStartPos, introEndPos, eased);
           modelPivot.rotation.set(

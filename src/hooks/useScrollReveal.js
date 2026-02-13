@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function useScrollReveal() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const elements = Array.from(document.querySelectorAll("[data-reveal], .section-heading"));
     if (elements.length === 0) {
       return undefined;
@@ -11,7 +11,9 @@ export default function useScrollReveal() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
+            window.setTimeout(() => {
+              entry.target.classList.add("in-view");
+            }, 70);
             observer.unobserve(entry.target);
           }
         });

@@ -164,9 +164,9 @@ export default function HomePage() {
 
             <div className="about-grid">
               <article className="glass-card" data-reveal>
-                <h3>Introduction</h3>
+                <h3>Hey, I'm <span className="name">Daniel!</span></h3>
                 <p>
-                  I am an entry-level software developer with hands-on experience across full-stack web development,
+                  An entry-level software developer with hands-on experience across full-stack web development,
                   Python automation, and technical teaching environments. Through internships and instructional roles,
                   I have built a practical workflow for delivering features, debugging issues systematically, and
                   communicating technical ideas clearly to different audiences. I am especially interested in building

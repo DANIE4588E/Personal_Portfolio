@@ -108,7 +108,7 @@ function TimelineList({ items }) {
           <h3>{entry.title}</h3>
           <p className="timeline-org">{entry.org}</p>
           {entry.grade ? <p className="timeline-grade">{entry.grade}</p> : null}
-          {entry.outcome ? <p className="timeline-outcome">Outcome/Prize: {entry.outcome}</p> : null}
+          {entry.outcome ? <p className="timeline-outcome">{entry.outcome}</p> : null}
           <p className="timeline-detail">{entry.detail}</p>
         </li>
       ))}

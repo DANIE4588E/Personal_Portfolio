@@ -94,6 +94,7 @@ body {
     opacity: 0.35;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -808,10 +809,11 @@ section[id] {
 
 .timeline-grade {
   font-family: 'Sora', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.00rem;
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 0.55rem;
+  color: var(--primary);
 }
 
 .timeline-outcome {

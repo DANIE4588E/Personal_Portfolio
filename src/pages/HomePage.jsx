@@ -38,13 +38,45 @@ const educationTimeline = [
   },
 ];
 
-const recognitionTimeline = [
+const awardsTimeline = [
   {
     date: "2026",
     title: "AWS GenAI Tournament Winner",
     org: "Competition",
+    outcome: "Winner",
     detail: "Achieved top placement in a GenAI-focused competition environment.",
   },
+  {
+    date: "2025",
+    title: "Huawei Tech4City",
+    org: "Competition",
+    outcome: "Participant",
+    detail: "Participated in a national-level technology challenge context.",
+  },
+  {
+    date: "2025",
+    title: "IDE Robotics",
+    org: "Competition",
+    outcome: "Participant",
+    detail: "Participated in robotics problem-solving and implementation challenges.",
+  },
+  {
+    date: "2025",
+    title: "HacX Challenge",
+    org: "Competition",
+    outcome: "Participant",
+    detail: "Contributed in hackathon-style technical challenge activities.",
+  },
+  {
+    date: "2022",
+    title: "WRO Secondary",
+    org: "Competition",
+    outcome: "Participant",
+    detail: "Early-stage robotics competition experience.",
+  },
+];
+
+const certificationsTimeline = [
   {
     date: "2025",
     title: "AI Fluency Framework & Foundations",
@@ -56,30 +88,6 @@ const recognitionTimeline = [
     title: "Certified Entry-Level Python Programmer",
     org: "Python Institute",
     detail: "Validated foundational Python development competency.",
-  },
-  {
-    date: "2025",
-    title: "Huawei Tech4City Participant",
-    org: "Competition",
-    detail: "Participated in a national-level technology challenge context.",
-  },
-  {
-    date: "2025",
-    title: "IDE Robotics Participant",
-    org: "Competition",
-    detail: "Participated in robotics problem-solving and implementation challenges.",
-  },
-  {
-    date: "2025",
-    title: "HacX Challenge Participant",
-    org: "Competition",
-    detail: "Contributed in hackathon-style technical challenge activities.",
-  },
-  {
-    date: "2022",
-    title: "WRO Secondary Participant",
-    org: "Competition",
-    detail: "Early-stage robotics competition experience.",
   },
   {
     date: "Undated",
@@ -100,6 +108,7 @@ function TimelineList({ items }) {
           <h3>{entry.title}</h3>
           <p className="timeline-org">{entry.org}</p>
           {entry.grade ? <p className="timeline-grade">{entry.grade}</p> : null}
+          {entry.outcome ? <p className="timeline-outcome">Outcome/Prize: {entry.outcome}</p> : null}
           <p className="timeline-detail">{entry.detail}</p>
         </li>
       ))}
@@ -221,6 +230,45 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section id="projects" className="content-section">
+          <div className="container">
+            <div className="section-heading">
+              <p className="section-kicker">Projects</p>
+              <h2>Project Highlights</h2>
+            </div>
+
+            <div className="home-projects-grid">
+              <Link className="glass-card home-project-tile" to="/projects/careswap-full-stack-platform" data-reveal>
+                <img className="home-project-image" src="/images/Careswap.png" alt="Care-Swap project preview" />
+                <div className="home-project-overlay" />
+                <h3>Care-Swap</h3>
+                <p>View project details</p>
+              </Link>
+
+              <Link className="glass-card home-project-tile" to="/projects/lost-moonlit" data-reveal>
+                <img className="home-project-image" src="/images/Moonlit.png" alt="Moonlit project preview" />
+                <div className="home-project-overlay" />
+                <h3>Moonlit</h3>
+                <p>View project details</p>
+              </Link>
+
+              <Link className="glass-card home-project-tile" to="/projects/wordle-solver" data-reveal>
+                <img className="home-project-image" src="/images/Wordle.png" alt="Wordle Solver project preview" />
+                <div className="home-project-overlay" />
+                <h3>Wordle Solver</h3>
+                <p>View project details</p>
+              </Link>
+
+              <Link className="glass-card home-project-tile home-project-tile-all" to="/projects" data-reveal>
+                <h3>
+                  View all projects <span className="tile-arrow" aria-hidden="true">&rarr;</span>
+                </h3>
+                <p>Browse complete project list</p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section id="education" className="content-section timeline-section">
           <div className="container">
             <div className="section-heading">
@@ -238,12 +286,20 @@ export default function HomePage() {
           <div className="container">
             <div className="section-heading">
               <p className="section-kicker">Achievements</p>
-              <h2>Awards & Certifications</h2>
+              <h2>Awards and Certifications</h2>
             </div>
 
-            <article className="glass-card timeline-card timeline-single" data-reveal>
-              <TimelineList items={recognitionTimeline} />
-            </article>
+            <div className="achievements-grid">
+              <article className="glass-card timeline-card" data-reveal>
+                <h3 className="timeline-group-title">Awards</h3>
+                <TimelineList items={awardsTimeline} />
+              </article>
+
+              <article className="glass-card timeline-card" data-reveal>
+                <h3 className="timeline-group-title">Certifications</h3>
+                <TimelineList items={certificationsTimeline} />
+              </article>
+            </div>
           </div>
         </section>
 

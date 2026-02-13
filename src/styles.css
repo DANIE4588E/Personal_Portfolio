@@ -525,6 +525,60 @@ section[id] {
   gap: 0.55rem;
 }
 
+.home-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.home-project-tile {
+  position: relative;
+  min-height: 150px;
+  display: grid;
+  align-content: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.home-project-tile h3 {
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.home-project-tile p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  position: relative;
+  z-index: 2;
+}
+
+.home-project-tile-all {
+  border-color: rgba(255, 112, 67, 0.5);
+}
+
+.home-project-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.home-project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 20%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 1;
+}
+
+.home-project-tile .tile-arrow {
+  color: var(--primary);
+  margin-left: 0.2rem;
+}
+
 /* Skills */
 .skill-groups {
   display: flex;
@@ -760,6 +814,24 @@ section[id] {
   margin-bottom: 0.55rem;
 }
 
+.timeline-outcome {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 0.55rem;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.timeline-group-title {
+  margin-bottom: 1rem;
+}
+
 /* Contact Section */
 .contact-section {
   text-align: center;
@@ -843,7 +915,9 @@ section[id] {
 @media (max-width: 900px) {
 
   .about-grid,
-  .project-grid {
+  .project-grid,
+  .achievements-grid,
+  .home-projects-grid {
     grid-template-columns: 1fr;
   }
 

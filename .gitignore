@@ -4,3 +4,6 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+public/models/Painterly8.glb
+public/models/Painterly9.glb
+public/models/Painterly10.glb

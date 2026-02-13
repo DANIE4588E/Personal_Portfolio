@@ -319,13 +319,12 @@ export default function HomePage() {
         <section id="contact" className="content-section contact-section">
           <div className="container">
             <div className="section-heading">
-              <p className="section-kicker">Contact</p>
-              <h2>Contact Me</h2>
+              <h2 style={{ color: "var(--primary)" }}>Contact Me</h2>
             </div>
 
             <div className="contact-grid" data-reveal>
               <a href="mailto:danielyongzx@gmail.com">danielyongzx@gmail.com</a>
-              <a href="tel:+6582923677">+65 8292 3677 (Singapore)</a>
+              <a href="tel:+6582923677">+65 8292 3677</a>
               <a href="https://www.linkedin.com/in/daniel-yong-88a874265/" target="_blank" rel="noopener noreferrer">
                 <svg className="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path

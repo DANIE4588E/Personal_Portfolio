@@ -6,14 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 
 const MODEL_SOURCES = [
-  { type: "glb", path: "/models/Painterly7.glb" },
-  { type: "glb", path: "/models/Painterly6.glb" },
-  { type: "glb", path: "/models/Painterly5.glb" },
-  { type: "glb", path: "/models/Painterly4.glb" },
-  { type: "glb", path: "/models/Painterly2.glb" },
-  { type: "glb", path: "/models/Painterly2.optimized.glb" },
-  { type: "fbx", path: "/models/Painterly2.fbx" },
-  { type: "fbx", path: "/models/Painterly.fbx" },
+  { type: "glb", path: "/models/Painterly8.glb" },
 ];
 
 const LOAD_TIMEOUT_MS = 12000;

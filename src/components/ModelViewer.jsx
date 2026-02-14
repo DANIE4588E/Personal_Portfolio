@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
@@ -149,6 +148,7 @@ export default function ModelViewer({ onIntroComplete }) {
     renderer.toneMappingExposure = 1.28;
     renderer.setClearColor(0x000000, 1);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.domElement.style.touchAction = "pan-y";
     host.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -157,15 +157,9 @@ export default function ModelViewer({ onIntroComplete }) {
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
     camera.position.set(0, 1.15, 5.8);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = false;
-    controls.enableRotate = false;
-    controls.enablePan = false;
-    controls.enableZoom = false;
-    controls.enabled = false;
-
     const introStartPos = new THREE.Vector3(0, -1.65, -4.8);
     const introEndPos = new THREE.Vector3(0, -0.2, 0);
+    camera.lookAt(introEndPos);
     const introStartRot = new THREE.Euler(-0.72, -1.05, -0.24);
     const introEndRot = new THREE.Euler(-0.22, 0.34, 0.04);
 
@@ -234,8 +228,11 @@ export default function ModelViewer({ onIntroComplete }) {
       pointerTargetY = 0;
     };
 
-    host.addEventListener("pointermove", handlePointerMove);
-    host.addEventListener("pointerleave", resetPointer);
+    const enablePointerParallax = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (enablePointerParallax) {
+      host.addEventListener("pointermove", handlePointerMove);
+      host.addEventListener("pointerleave", resetPointer);
+    }
 
     const animate = () => {
       if (!mounted) {
@@ -257,7 +254,7 @@ export default function ModelViewer({ onIntroComplete }) {
 
           modelPivot.position.lerpVectors(introStartPos, introEndPos, eased);
           modelPivot.rotation.set(
-            THREE.MathUtils.lerp(introStartRot.x, introEndRot.x, eased) - pointerY * maxPitch,
+            THREE.MathUtils.lerp(introStartRot.x, introEndRot.x, eased) + pointerY * maxPitch,
             THREE.MathUtils.lerp(introStartRot.y, introEndRot.y, eased) + (1 - eased) * 0.25 + pointerX * maxYaw,
             THREE.MathUtils.lerp(introStartRot.z, introEndRot.z, eased)
           );
@@ -275,7 +272,7 @@ export default function ModelViewer({ onIntroComplete }) {
           }
         } else {
           modelPivot.rotation.set(
-            introEndRot.x - pointerY * maxPitch,
+            introEndRot.x + pointerY * maxPitch,
             introEndRot.y + pointerX * maxYaw,
             introEndRot.z
           );
@@ -386,8 +383,6 @@ export default function ModelViewer({ onIntroComplete }) {
       resizeObserver.disconnect();
       host.removeEventListener("pointermove", handlePointerMove);
       host.removeEventListener("pointerleave", resetPointer);
-
-      controls.dispose();
       dracoLoader.dispose();
 
       scene.traverse((node) => {

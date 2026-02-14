@@ -132,6 +132,12 @@ function ExperiencePreviewList({ items }) {
 
 export default function HomePage() {
   const [introComplete, setIntroComplete] = useState(false);
+  const [modelReady, setModelReady] = useState(false);
+
+  const handleModelLoaded = useCallback(() => {
+    setModelReady(true);
+  }, []);
+
   const handleIntroComplete = useCallback(() => {
     setIntroComplete(true);
   }, []);
@@ -139,11 +145,17 @@ export default function HomePage() {
 
   return (
     <>
+      {!modelReady ? (
+        <div className="page-loader-overlay" role="status" aria-live="polite" aria-label="Loading 3D model">
+          <div className="page-loader-spinner" />
+          <p>Loading portfolio experience...</p>
+        </div>
+      ) : null}
       <NavBar />
 
       <main>
         <section id="top" className="hero-stage">
-          <ModelViewer onIntroComplete={handleIntroComplete} />
+          <ModelViewer onModelLoaded={handleModelLoaded} onIntroComplete={handleIntroComplete} />
 
           <div className={`hero-name ${introComplete ? "visible" : ""}`}>
             <p className="hero-role">Software Developer</p>

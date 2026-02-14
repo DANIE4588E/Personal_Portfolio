@@ -112,9 +112,10 @@ function enableVertexColorMaterial(mesh) {
   }
 }
 
-export default function ModelViewer({ onIntroComplete }) {
+export default function ModelViewer({ onIntroComplete, onModelLoaded }) {
   const containerRef = useRef(null);
   const introNotifiedRef = useRef(false);
+  const modelLoadNotifiedRef = useRef(false);
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -135,10 +136,21 @@ export default function ModelViewer({ onIntroComplete }) {
       }
     };
 
+    const notifyModelLoaded = () => {
+      if (modelLoadNotifiedRef.current) {
+        return;
+      }
+      modelLoadNotifiedRef.current = true;
+      if (typeof onModelLoaded === "function") {
+        onModelLoaded();
+      }
+    };
+
     let renderer;
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
     } catch {
+      notifyModelLoaded();
       window.setTimeout(notifyIntroComplete, 400);
       return undefined;
     }
@@ -363,6 +375,7 @@ export default function ModelViewer({ onIntroComplete }) {
           modelPivot.rotation.copy(introStartRot);
 
           modelLoaded = true;
+          notifyModelLoaded();
           introActive = true;
           introStart = performance.now();
 
@@ -373,6 +386,7 @@ export default function ModelViewer({ onIntroComplete }) {
       }
 
       if (mounted) {
+        notifyModelLoaded();
         window.setTimeout(notifyIntroComplete, 700);
       }
     })();
@@ -397,7 +411,7 @@ export default function ModelViewer({ onIntroComplete }) {
         host.removeChild(renderer.domElement);
       }
     };
-  }, [onIntroComplete]);
+  }, [onIntroComplete, onModelLoaded]);
 
   return (
     <div className="viewer-shell" aria-label="Interactive 3D model scene">

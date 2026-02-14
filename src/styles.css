@@ -68,6 +68,41 @@ body {
   font-size: 0.78rem;
 }
 
+.page-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  gap: 0.9rem;
+  background: radial-gradient(circle at 50% 10%, #12141d 0%, #060607 55%, #030303 100%);
+  color: var(--text-muted);
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+}
+
+.page-loader-spinner {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top-color: var(--primary);
+  animation: spinLoader 0.85s linear infinite;
+}
+
+.page-loader-overlay p {
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .reveal-item {
   opacity: 0;
   transform: translateY(16px) scale(0.998);
